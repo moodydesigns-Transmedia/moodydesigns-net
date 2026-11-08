@@ -1,0 +1,576 @@
+/* ==========================================================================
+   MOODYDESIGNS METAVERSE - BRANDED FLOATING NAV & INTERACTION ENHANCEMENTS
+   ========================================================================== */
+
+:root {
+  --moody-orange: #f7931e;
+  --moody-orange-bright: #ffaa00;
+  --moody-orange-glow: rgba(247, 147, 30, 0.45);
+  --moody-orange-subtle: rgba(247, 147, 30, 0.15);
+  --moody-dark-bg: rgba(12, 14, 20, 0.94);
+  --moody-border: rgba(247, 147, 30, 0.35);
+}
+
+/* ==========================================================================
+   1. PAGE BOUNDARY & LAYOUT ALIGNMENT SAFEGUARDS
+   ========================================================================== */
+
+/* ==========================================================================
+   1. SURGICAL HIDING OF LEGACY HEADER ELEMENTS
+   ========================================================================== */
+
+/* This hides only the specific legacy containers identified as unwanted.
+   It does not affect page layout, background images, or other content. */
+#zb6iSPaaILnARoCO,
+#Xbkj8av291q80CXR,
+#NOMyvYqieI5uu3ZL,
+#vWCAJaiXwFJD9hpr,
+#jzeKaww50Sv2JnvW,
+.moody-old-header-element {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+/* Custom Cursor - Base */
+html, body {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%23f7931e" /></svg>') 12 12, auto !important;
+}
+
+/* Custom Cursor - Interactive (Links, Buttons, Images, Cards, SOVRN Widget Controls) */
+a, a *, 
+button, button *, 
+.moody-nav-pill, .moody-nav-pill *,
+.moody-nav-home, .moody-nav-home *,
+.moody-nav-icon-btn, .moody-nav-icon-btn *,
+.moody-dropdown-item, .moody-dropdown-item *,
+.moody-clickable-image, .moody-clickable-image-wrap,
+img.moody-clickable-image,
+.moody-lightbox-close,
+.sovereign-btn-listen, .sovereign-btn-listen *,
+.sovereign-btn-scroll, .sovereign-btn-scroll *,
+.sovereign-choice-col,
+.sovereign-choice-icon,
+.player-btn-scroll-read, .player-btn-scroll-read *,
+.player-play-btn, .player-play-btn *,
+.player-progress-bar,
+.img-nav, .img-nav *,
+.space-nav, .space-nav *,
+#moody-footer-card, #moody-footer-card * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="none" stroke="%23f7931e" stroke-width="3" /></svg>') 16 16, pointer !important;
+}
+
+
+
+
+
+/* ==========================================================================
+   2. TOP SCROLL PROGRESS BAR
+   ========================================================================== */
+
+#metaverse-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #ff5500, #f7931e, #ffbb00);
+  box-shadow: 0 0 10px #f7931e, 0 0 5px #ffaa00;
+  z-index: 1000000;
+  transition: width 0.08s ease-out;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. FLOATING CENTERED TOP NAVIGATION BAR
+   ========================================================================== */
+
+#moody-floating-navbar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999990;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--moody-dark-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--moody-border);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(247, 147, 30, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  max-width: 95vw;
+  transition: opacity 0.5s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0; /* Start hidden */
+}
+
+#moody-floating-navbar.visible {
+  opacity: 1;
+}
+
+#moody-floating-navbar:hover {
+  border-color: var(--moody-orange);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.85), 0 0 30px rgba(247, 147, 30, 0.35);
+}
+
+/* Home Icon Circular Button */
+.moody-nav-home {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.moody-nav-home svg {
+  width: 18px;
+  height: 18px;
+  stroke: #000000 !important;
+  transition: stroke 0.25s ease, transform 0.25s ease;
+}
+
+.moody-nav-home:hover {
+  background: var(--moody-orange) !important;
+  border-color: #ffb700 !important;
+  box-shadow: 0 0 16px var(--moody-orange-glow);
+  transform: scale(1.05);
+}
+
+.moody-nav-home:hover svg {
+  stroke: #ffffff !important;
+}
+
+/* Navigation Pill Links */
+.moody-nav-pill {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.moody-nav-pill .dot {
+  color: var(--moody-orange);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.moody-nav-pill:hover {
+  background: var(--moody-orange-subtle);
+  border-color: var(--moody-orange);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--moody-orange-glow);
+}
+
+.moody-nav-pill.active {
+  background: var(--moody-orange);
+  border-color: #ffb700;
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 0 16px var(--moody-orange-glow);
+}
+
+.moody-nav-pill.active .dot {
+  color: #000000;
+}
+
+/* Dropdown Menu for Spaces */
+.moody-dropdown-wrap {
+  position: relative;
+}
+
+.moody-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 280px;
+  background: rgba(14, 16, 24, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--moody-orange);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(247, 147, 30, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 999995;
+}
+
+.moody-dropdown-menu.show,
+.moody-dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.moody-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.moody-dropdown-item:hover, .moody-dropdown-item.active {
+  background: var(--moody-orange-subtle);
+  color: var(--moody-orange);
+  transform: translateX(3px);
+}
+
+.moody-dropdown-item .badge {
+  font-size: 10px;
+  color: var(--moody-orange);
+  background: rgba(247, 147, 30, 0.15);
+  padding: 2px 6px;
+  border-radius: 9999px;
+  border: 1px solid rgba(247, 147, 30, 0.3);
+}
+
+.moody-dropdown-item .badge-available {
+  font-size: 10px;
+  font-weight: 700;
+  color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.15) !important;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  text-transform: lowercase;
+}
+
+.moody-dropdown-item .badge-coming-soon {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  text-transform: lowercase;
+}
+
+.moody-dropdown-item.disabled {
+  pointer-events: none !important;
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+/* Sound Toggle Icon */
+.moody-nav-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.moody-nav-icon-btn:hover {
+  background: var(--moody-orange-subtle);
+  border-color: var(--moody-orange);
+  color: var(--moody-orange);
+  transform: scale(1.06);
+}
+
+/* Back to top button */
+#metaverse-back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(14, 16, 24, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--moody-border);
+  color: var(--moody-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999980;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#metaverse-back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#metaverse-back-to-top:hover {
+  background: var(--moody-orange);
+  border-color: #ffaa00;
+  color: #000;
+  box-shadow: 0 8px 24px var(--moody-orange-glow);
+  transform: scale(1.08);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #moody-floating-navbar {
+    top: 10px;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .moody-nav-pill {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+  .moody-nav-home {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ==========================================================================
+   6. DYNAMIC LIGHTBOX FOR SPACES PREVIEW
+   ========================================================================== */
+#moody-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none !important;
+  opacity: 0;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#moody-lightbox.open {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+#moody-lightbox.open * {
+  pointer-events: auto !important;
+}
+
+.moody-lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 14, 20, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  cursor: pointer;
+}
+
+.moody-lightbox-content {
+  position: relative;
+  z-index: 2;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#moody-lightbox.open .moody-lightbox-content {
+  transform: scale(1);
+}
+
+.moody-lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(247, 147, 30, 0.3);
+  border: 1px solid rgba(247, 147, 30, 0.4);
+  object-fit: contain;
+}
+
+.moody-lightbox-desc {
+  margin-top: 15px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  background: rgba(247, 147, 30, 0.15);
+  padding: 8px 20px;
+  border-radius: 99px;
+  border: 1px solid rgba(247, 147, 30, 0.3);
+}
+
+.moody-lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: none;
+  border: none;
+  color: var(--moody-orange);
+  font-size: 40px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.moody-lightbox-close:hover {
+  transform: scale(1.1) rotate(90deg);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .moody-lightbox-close {
+    top: -35px;
+    right: 0;
+  }
+}
+
+
+
+/* ==========================================================================
+   7. GLOW & HOVER EFFECTS FOR ORIGINAL CANVA ICONS
+   ========================================================================== */
+
+
+/* Decorative SVGs and Canva shape overlays must not intercept clicks over images or controls */
+svg {
+  pointer-events: none !important;
+}
+
+svg.moody-interactive-svg {
+  pointer-events: auto !important;
+}
+
+/* Simplified global click safety */
+html, body {
+  pointer-events: auto !important;
+}
+
+/* Keep interactive elements specifically enabled */
+button, a, .moody-nav-pill, .moody-nav-home, .moody-dropdown-item, .moody-clickable-image, .moody-clickable-image-wrap, .moody-lightbox-close {
+  pointer-events: auto !important;
+}
+
+#sovereign-root {
+  /* Removed pointer-events: none; - causing click blockage */
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+}
+
+#sovereign-gate, #sovereign-modal, .sovereign-modal,
+.sovereign-btn-listen, .sovereign-btn-scroll, .player-btn-scroll-read,
+.player-play-btn, .player-progress-bar, .img-nav, .space-nav,
+.sovereign-choice-icon, .sovereign-choice-col {
+  pointer-events: auto !important;
+}
+
+#sovereign-player.player-active {
+  pointer-events: auto !important;
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #333;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 50%;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+  padding-right: 0;
+  padding-left: 2rem;
+}
+.timeline-content {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #333;
+}
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  background: #F58220;
+  border-radius: 50%;
+}
+.timeline-item:nth-child(even)::after {
+  left: -6px;
+}

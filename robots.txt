@@ -1,0 +1,9 @@
+# Googlebot and Search Engine Directives for Moodydesigns Metaverse Studio
+User-agent: *
+Allow: /
+Allow: /images/
+Allow: /fonts/
+Allow: /videos/
+Allow: /js/
+
+Sitemap: https://moodydesigns.net/sitemap.xml

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A. Adel Hosny Jr. | Full Stack Game Designer & Software Architect</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        scifi: {
+                            dark: '#07070a',
+                            panel: '#0f0f14',
+                            border: '#1f1f29',
+                            accent: '#F28705',
+                            accentHover: '#FFA32B',
+                            text: '#e2e8f0',
+                            muted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/metaverse-enhancements.css">
+
+    <style>
+        body {
+            background-color: #07070a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Editable Field Styling */
+        [contenteditable="true"] {
+            outline: none;
+            transition: all 0.2s ease;
+            border-radius: 0.375rem;
+            border: 1px solid transparent;
+        }
+        
+        [contenteditable="true"]:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 0 1px rgba(242, 135, 5, 0.3);
+            cursor: text;
+        }
+
+        [contenteditable="true"]:focus {
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 0 0 1px #F28705;
+            padding: 2px 4px;
+            margin: -2px -4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07070a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f1f29; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F28705; 
+        }
+
+        /* Checkbox Styling */
+        .scifi-checkbox {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #1f1f29;
+            border-radius: 0.25rem;
+            background-color: #0f0f14;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .scifi-checkbox:checked {
+            background-color: #F28705;
+            border-color: #F28705;
+        }
+        .scifi-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #07070a;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.75rem;
+        }
+
+        /* Glowing Effects */
+        .orange-glow {
+            box-shadow: 0 0 25px rgba(242, 135, 5, 0.15);
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; color: black; }
+            .scifi-panel { background: white; border: 1px solid #ccc; border-radius: 0; box-shadow: none; color: black !important; }
+            .no-print { display: none !important; }
+            [contenteditable="true"]:hover, [contenteditable="true"]:focus { box-shadow: none; background: transparent; padding: 0; margin: 0; }
+            select { appearance: none; border: none; background: transparent; }
+            .text-scifi-accent { color: #B36200 !important; }
+            .text-scifi-muted { color: #555555 !important; }
+            .border-scifi-border { border-color: #cccccc !important; }
+            .text-white { color: black !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- Mobile Header -->
+    <div class="md:hidden bg-scifi-panel border-b border-scifi-border p-4 flex justify-between items-center sticky top-0 z-50 no-print">
+        <div class="font-mono font-bold text-scifi-accent flex items-center gap-2">
+            <i class="fa-solid fa-cube"></i> MoodyDesigns
+        </div>
+        <button id="mobile-menu-btn" class="text-scifi-text hover:text-scifi-accent">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="hidden md:flex w-full md:w-64 bg-scifi-panel border-r border-scifi-border flex-col sticky top-0 md:h-screen transition-all z-40 overflow-y-auto no-print">
+        <div class="p-6 border-b border-scifi-border hidden md:block">
+            <a href="index.html" class="block w-48 mx-auto">
+                <img src="images/Moodydesigns-Logo.png" alt="MoodyDesigns Logo" class="w-full h-auto">
+            </a>
+            <p class="text-xs text-white font-bold mt-1 uppercase tracking-widest text-center w-48 mx-auto">Transmedia Studio</p>
+        </div>
+
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#about" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-scifi-muted hover:text-scifi-accent hover:bg-scifi-accent/10 transition-colors">
+                <i class="fa-solid fa-user-tie w-5"></i> Profile Hub
+            </a>
+            <a href="#optimization" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-scifi-muted hover:text-scifi-accent hover:bg-scifi-accent/10 transition-colors">
+                <i class="fa-solid fa-gauge-high w-5"></i> Optimization Math
+            </a>
+            <a href="#portfolio" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-scifi-muted hover:text-scifi-accent hover:bg-scifi-accent/10 transition-colors">
+                <i class="fa-solid fa-vr-cardboard w-5"></i> 3D Playable Spaces
+            </a>
+            <a href="#testimonials" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-scifi-muted hover:text-scifi-accent hover:bg-scifi-accent/10 transition-colors">
+                <i class="fa-solid fa-star w-5"></i> Client Testimonials
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-4 md:p-8 lg:p-12 overflow-x-hidden">
+        
+        <!-- Header Section -->
+        <header class="mb-12 border-b border-scifi-border pb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+                <div>
+                    <div class="inline-block bg-scifi-accent/10 text-scifi-accent border border-scifi-accent/30 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest mb-4 uppercase" contenteditable="true">
+                        Professional Portfolio Hub
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+                        A. Adel Hosny Jr.
+                    </h1>
+                    <p class="text-xl text-scifi-accent font-semibold mt-2">
+                        Full Stack Game Designer & Software Architect
+                    </p>
+                    <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-scifi-muted font-mono">
+                        <span><i class="fa-solid fa-envelope text-scifi-accent mr-1"></i> moody_freelancer@yahoo.com</span>
+                        <span><i class="fa-solid fa-globe text-scifi-accent mr-1"></i> artstation.com/the-moody</span>
+                        <span><i class="fa-solid fa-briefcase text-scifi-accent mr-1"></i> freelancer.com/u/paalmee</span>
+                    </div>
+                </div>
+                <div class="max-w-[280px] no-print">
+                    <a href="index.html" class="block w-48 mx-auto">
+                        <img src="images/Moodydesigns-Logo.png" alt="MoodyDesigns Logo" class="rounded-lg border border-scifi-border w-full h-auto p-2 bg-[#13131a]" onerror="this.src='https://placehold.co/280x100/13131a/F28705?text=MoodyDesigns'">
+                    </a>
+                    <p class="text-xs text-white font-bold mt-2 uppercase tracking-widest text-center w-48 mx-auto">Transmedia Studio</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section 1: Executive Profile & Tech Stack -->
+        <section id="about" class="mb-12 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6 border-b border-scifi-border pb-3">
+                <i class="fa-solid fa-user-tie text-xl text-scifi-accent"></i>
+                <h2 class="text-2xl font-bold text-white">1. Executive Profile & Architecture Foundations</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Biography Left -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-scifi-panel border border-scifi-border p-6 rounded-xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-scifi-accent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                        <h3 class="text-xs font-mono text-scifi-accent mb-2 uppercase">Core Architectural Thesis</h3>
+                        <p class="text-scifi-text text-base leading-relaxed">
+                            Highly proficient, self-taught Senior Software Architect & Full Stack Game Designer with a 15-year masterly legacy. I specialize in designing and delivering massive-scale WebGL environments and game architectures built using clean, ultra-optimized system code. Through extreme memory allocation pipelines, low-level shaders, and parallel GPU execution, I deliver flawless, performance-locked AAA visual fidelity directly inside the browser.
+                        </p>
+                    </div>
+
+                    <div class="bg-scifi-panel border border-scifi-border p-6 rounded-xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-scifi-accent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                        <h3 class="text-xs font-mono text-scifi-accent mb-2 uppercase">AI-Collaborative Design Vision</h3>
+                        <p class="text-scifi-text text-base leading-relaxed">
+                            In the modern spatial engineering era, the Architect drives the system structure, logic rules, and quality assurance, utilizing highly optimized AI systems to execute computationally heavy rendering assets and structural mathematics. This de-risks visual pipelines, eliminating traditional overhead and scope boundaries.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Skills Right -->
+                <div class="bg-scifi-panel border border-scifi-border p-6 rounded-xl">
+                    <h3 class="text-xs font-mono text-scifi-accent mb-4 uppercase">Verified Technical Stack</h3>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <span class="text-xs font-semibold text-scifi-muted uppercase block mb-1">Architecture & Systems</span>
+                            <div class="flex flex-wrap gap-1.5" id="tags-systems">
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">Unity 6 DOTS/ECS</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">C# Optimization</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">WebGPU Standard</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">C++ / WebGL Assembly</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-scifi-muted uppercase block mb-1">Visual Pipelines</span>
+                            <div class="flex flex-wrap gap-1.5" id="tags-visuals">
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">Blender Custom Modeling</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">Vertex Shaders</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">Bake Light Atlas</span>
+                                <span class="bg-scifi-border text-scifi-text font-mono text-xs px-2 py-0.5 rounded">VAT Rigging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive WebGL Budget Calculator -->
+        <section id="optimization" class="mb-12 scroll-mt-24 no-print">
+            <div class="flex items-center gap-3 mb-6 border-b border-scifi-border pb-3">
+                <i class="fa-solid fa-gauge-high text-xl text-scifi-accent"></i>
+                <h2 class="text-2xl font-bold text-white">2. Interactive WebGL Asset Budget Estimator</h2>
+            </div>
+
+            <div class="bg-scifi-panel border border-scifi-border p-6 rounded-xl">
+                <div class="max-w-3xl mb-6">
+                    <p class="text-sm text-scifi-muted leading-relaxed">
+                        Drag the sliders to test visual scene complexities and simulate real-time browser frame rates. My optimization pipelines are built to support dense, interactive assets at a locked 60FPS.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <!-- Sliders Left -->
+                    <div class="md:col-span-7 space-y-5">
+                        <!-- Polycount -->
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-scifi-text mb-2">
+                                <span>Scene Polygon Density</span>
+                                <span class="text-scifi-accent font-bold" id="val-poly">150,000 Tris</span>
+                            </div>
+                            <input type="range" id="slider-poly" min="50000" max="1500000" step="50000" value="150000" class="w-full accent-scifi-accent h-2 bg-[#13131a] rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Materials -->
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-scifi-text mb-2">
+                                <span>Shared Material Draw Slots</span>
+                                <span class="text-scifi-accent font-bold" id="val-mat">12 Mats</span>
+                            </div>
+                            <input type="range" id="slider-mat" min="2" max="60" step="2" value="12" class="w-full accent-scifi-accent h-2 bg-[#13131a] rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Target Hardware -->
+                        <div>
+                            <div class="flex justify-between items-center text-xs font-mono text-scifi-text">
+                                <span>Target Client Hardware Profile</span>
+                                <select id="select-hardware" class="bg-[#13131a] border border-scifi-border text-scifi-text text-xs rounded p-1 outline-none focus:border-scifi-accent">
+                                    <option value="low-mobile">Low-tier Mobile Phone</option>
+                                    <option value="mid-tablet">Average Tablet / Mid Laptop</option>
+                                    <option value="high-pc" selected>Premium Desktop WebGL/WebGPU</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compute Outputs Right -->
+                    <div class="md:col-span-5 bg-[#13131a] border border-scifi-border p-6 rounded-xl text-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 h-16 w-16 bg-scifi-accent/5 rounded-full blur-xl"></div>
+                        <span class="text-xs font-mono text-scifi-muted block uppercase">Browser Target Forecast</span>
+                        
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-xs text-scifi-muted block">Initialization</span>
+                                <span class="text-xl font-bold font-mono text-white mt-1 block" id="out-load">~ 1.8s</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-scifi-muted block">Render Lock</span>
+                                <span class="text-xl font-bold font-mono text-scifi-accent mt-1 block" id="out-fps">60 FPS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 3D Playable Worlds -->
+        <section id="portfolio" class="mb-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-6 border-b border-scifi-border pb-3">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-vr-cardboard text-xl text-scifi-accent"></i>
+                    <h2 class="text-2xl font-bold text-white">3. Live WebGL Interactive Environments</h2>
+                </div>
+                <span class="text-xs font-mono text-scifi-muted uppercase no-print">Click to Launch</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Portfolio Space 1 -->
+                <div class="bg-scifi-panel border border-scifi-border rounded-xl overflow-hidden hover:border-scifi-accent transition-all group">
+                    <div class="h-44 flex items-center justify-center relative overflow-hidden" style="background-image: url('images/LiveSpaces_01.jpg'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-black/40 z-10"></div>
+                        <div class="absolute z-20 text-center">
+                            <span class="font-mono text-xs text-scifi-accent block uppercase tracking-widest font-bold">Coralverse</span>
+                            <span class="text-lg font-bold text-white block mt-1">Paragon Mansion</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-scifi-muted mb-4">
+                            A fully dynamic reactive marine environment utilizing automated entity swarms executing directly on the GPU. Optimized custom shader structures ensure rich scene density with zero frame loss.
+                        </p>
+                        <a href="https://spaces.monaverse.com/spaces/coralverse-paragon-mansion" target="_blank" class="no-print bg-scifi-border hover:bg-scifi-accent hover:text-scifi-dark text-scifi-text text-xs font-mono py-2 rounded-lg text-center font-bold block transition-all">
+                            <i class="fa-solid fa-play mr-1"></i> Enter WebGL Environment
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Space 2 -->
+                <div class="bg-scifi-panel border border-scifi-border rounded-xl overflow-hidden hover:border-scifi-accent transition-all group">
+                    <div class="h-44 flex items-center justify-center relative overflow-hidden" style="background-image: url('images/LiveSpaces_02.jpg'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-black/40 z-10"></div>
+                        <div class="absolute z-20 text-center">
+                            <span class="font-mono text-xs text-scifi-accent block uppercase tracking-widest font-bold">Royal NFT Gallery</span>
+                            <span class="text-lg font-bold text-white block mt-1">Sovereign Exhibition Space</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-scifi-muted mb-4">
+                            A pristine architectural interior leveraging unified baked light atlases to eliminate runtime shadows. Custom textures and dynamic material blending support rapid page load metrics.
+                        </p>
+                        <a href="https://spaces.monaverse.com/spaces/royal-nft-(showcase-gallery)" target="_blank" class="no-print bg-scifi-border hover:bg-scifi-accent hover:text-scifi-dark text-scifi-text text-xs font-mono py-2 rounded-lg text-center font-bold block transition-all">
+                            <i class="fa-solid fa-play mr-1"></i> Enter WebGL Environment
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Space 3 -->
+                <div class="bg-scifi-panel border border-scifi-border rounded-xl overflow-hidden hover:border-scifi-accent transition-all group">
+                    <div class="h-44 flex items-center justify-center relative overflow-hidden" style="background-image: url('images/LiveSpaces_03.jpg'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-black/40 z-10"></div>
+                        <div class="absolute z-20 text-center">
+                            <span class="font-mono text-xs text-scifi-accent block uppercase tracking-widest font-bold">Spiritual Detox</span>
+                            <span class="text-lg font-bold text-white block mt-1">Natural Sanctuary</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-scifi-muted mb-4">
+                            A tranquil organic terrain with custom wind wave scripts acting directly on the vegetation vertex nodes. Keeps multiple high-density organic assemblies smooth on mobile targets.
+                        </p>
+                        <a href="https://spaces.monaverse.com/spaces/spiritual-dcetox" target="_blank" class="no-print bg-scifi-border hover:bg-scifi-accent hover:text-scifi-dark text-scifi-text text-xs font-mono py-2 rounded-lg text-center font-bold block transition-all">
+                            <i class="fa-solid fa-play mr-1"></i> Enter WebGL Environment
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Space 4 -->
+                <div class="bg-scifi-panel border border-scifi-border rounded-xl overflow-hidden hover:border-scifi-accent transition-all group">
+                    <div class="h-44 flex items-center justify-center relative overflow-hidden" style="background-image: url('images/LiveSpaces_04.jpg'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-black/40 z-10"></div>
+                        <div class="absolute z-20 text-center">
+                            <span class="font-mono text-xs text-scifi-accent block uppercase tracking-widest font-bold">Eldoria's Light</span>
+                            <span class="text-lg font-bold text-white block mt-1">Prophecy Citadel Temple</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-scifi-muted mb-4">
+                            High-contrast space station temple featuring emissive modular structures and localized physics puzzle triggers. Demonstrates high-performance real-time geometry optimization.
+                        </p>
+                        <a href="https://spaces.monaverse.com/spaces/eldoria's-light-prophecy" target="_blank" class="no-print bg-scifi-border hover:bg-scifi-accent hover:text-scifi-dark text-scifi-text text-xs font-mono py-2 rounded-lg text-center font-bold block transition-all">
+                            <i class="fa-solid fa-play mr-1"></i> Enter WebGL Environment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Freelancer Legacy & Trust -->
+        <section id="testimonials" class="mb-12 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6 border-b border-scifi-border pb-3">
+                <i class="fa-solid fa-star text-xl text-scifi-accent"></i>
+                <h2 class="text-2xl font-bold text-white">4. Freelancer Legacy & Performance Validation</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-scifi-panel border border-scifi-border p-5 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-0.5 text-scifi-accent mb-3 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-scifi-text italic leading-relaxed">
+                            "Absolutely incredible work speed and attention to detail. Adel understood our custom WebGL environment limitations and delivered optimized game-ready modular building blocks within days."
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-scifi-border text-xs text-scifi-muted font-mono flex justify-between">
+                        <span>Studio Director</span>
+                        <span class="text-scifi-accent font-bold">5.0 Star Feedback</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-scifi-panel border border-scifi-border p-5 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-0.5 text-scifi-accent mb-3 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-scifi-text italic leading-relaxed">
+                            "He is exceptionally accurate with environment briefs. Transferred complex visual concepts from raw references into beautiful, atmospherically lit Unity environment sets with zero overhead."
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-scifi-border text-xs text-scifi-muted font-mono flex justify-between">
+                        <span>Spatial Web Client</span>
+                        <span class="text-scifi-accent font-bold">5.0 Star Feedback</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-scifi-panel border border-scifi-border p-5 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-0.5 text-scifi-accent mb-3 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-scifi-text italic leading-relaxed">
+                            "One of the best environment builders on the platform. Managed custom shaders and materials effortlessly to match our lighting setups while maintaining 60FPS."
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-scifi-border text-xs text-scifi-muted font-mono flex justify-between">
+                        <span>WebGL Agency Partner</span>
+                        <span class="text-scifi-accent font-bold">5.0 Star Feedback</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripting Execution Log -->
+    <script>
+        // Responsive Mobile Menu Drawer Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const asideSidebar = document.getElementById('sidebar');
+        mobileBtn.addEventListener('click', () => {
+            asideSidebar.classList.toggle('hidden');
+        });
+
+        // Interactive WebGL performance estimator execution logic
+        const slidePoly = document.getElementById('slider-poly');
+        const slideMat = document.getElementById('slider-mat');
+        const selectHw = document.getElementById('select-hardware');
+
+        const valPoly = document.getElementById('val-poly');
+        const valMat = document.getElementById('val-mat');
+        const outputLoad = document.getElementById('out-load');
+        const outputFps = document.getElementById('out-fps');
+
+        function updateWebGLPerformanceModel() {
+            const polygons = parseInt(slidePoly.value);
+            const materials = parseInt(slideMat.value);
+            const hardwareProfile = selectHw.value;
+
+            // Display raw slider telemetry
+            valPoly.textContent = polygons.toLocaleString() + " Tris";
+            valMat.textContent = materials + " Mats";
+
+            // Heuristics math representing native WebGL processing limitations
+            let computedLoadSec = (polygons * 0.000003) + (materials * 0.05);
+            let frameRateLimit = 90;
+
+            if (hardwareProfile === 'low-mobile') {
+                frameRateLimit = 60;
+                const polygonPenalty = (polygons / 100000) * 12 + (materials * 1.5);
+                frameRateLimit -= polygonPenalty;
+                computedLoadSec *= 2.5;
+            } else if (hardwareProfile === 'mid-tablet') {
+                const polygonPenalty = (polygons / 150000) * 6 + (materials * 0.8);
+                frameRateLimit -= polygonPenalty;
+                computedLoadSec *= 1.4;
+            } else {
+                const polygonPenalty = (polygons / 300000) * 2 + (materials * 0.3);
+                frameRateLimit -= polygonPenalty;
+            }
+
+            const cleanFps = Math.max(12, Math.min(60, Math.round(frameRateLimit)));
+            const cleanLoadTime = Math.max(0.4, computedLoadSec).toFixed(1);
+
+            outputLoad.textContent = `~ ${cleanLoadTime}s`;
+            outputFps.textContent = `${cleanFps} FPS`;
+
+            // Frame performance status coloring
+            outputFps.className = "text-xl font-bold font-mono mt-1 block";
+            if (cleanFps < 30) {
+                outputFps.classList.add('text-red-500');
+            } else if (cleanFps < 50) {
+                outputFps.classList.add('text-amber-500');
+            } else {
+                outputFps.classList.add('text-scifi-accent');
+            }
+        }
+
+        slidePoly.addEventListener('input', updateWebGLPerformanceModel);
+        slideMat.addEventListener('input', updateWebGLPerformanceModel);
+        selectHw.addEventListener('change', updateWebGLPerformanceModel);
+
+        // Run initialization processes
+        window.onload = function() {
+            updateWebGLPerformanceModel();
+        }
+    </script>
+    <script src="js/metaverse-enhancements.js" defer></script>
+  <script src="js/moody-ai-agent.js" defer></script>
+</body>
+</html>

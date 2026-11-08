@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Sandbox | DeepVoid Saga | MoodyDesigns Metaverse Studio</title>
+    <meta name="description" content="Standalone experimental widget and component sandbox for DeepVoid Saga and MoodyDesigns Metaverse Studio.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/moodydesign-icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/moodydesign-icon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/moodydesign-icon-180.png">
+
+    <!-- Metaverse Enhancements Styles -->
+    <link rel="stylesheet" href="css/metaverse-enhancements.css">
+
+    <style>
+        :root {
+            --moody-orange: #f7931e;
+            --moody-orange-bright: #ffaa00;
+            --moody-orange-glow: rgba(247, 147, 30, 0.45);
+            --moody-dark: #070709;
+            --moody-card-bg: rgba(14, 16, 22, 0.88);
+            --moody-border: rgba(247, 147, 30, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--moody-dark);
+            color: #faf9f8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Ambient Space Background Grid */
+        .ambient-grid {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 30%, rgba(247, 147, 30, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(255, 85, 0, 0.05) 0%, transparent 50%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Widget Container with Dynamic Scale-Up */
+        .widget-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 620px;
+        }
+
+        .dynamic-window {
+            background: var(--moody-card-bg);
+            border: 1px solid var(--moody-border);
+            border-radius: 18px;
+            padding: 32px 28px;
+            box-shadow: 
+                0 24px 60px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(247, 147, 30, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transform-origin: center center;
+            animation: dynamicScaleUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        }
+
+        .dynamic-window.closed {
+            opacity: 0;
+            transform: scale(0.65) translateY(30px);
+            pointer-events: none;
+        }
+
+        @keyframes dynamicScaleUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.65) translateY(28px);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+        }
+
+        /* Window Header */
+        .window-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+        }
+
+        .window-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--moody-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--moody-orange);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: 0.65; }
+        }
+
+        .window-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        /* Window Close [X] Button */
+        .btn-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #d1d1d6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 20px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .btn-close:hover {
+            background: rgba(247, 147, 30, 0.2);
+            border-color: var(--moody-orange);
+            color: #ffffff;
+            transform: scale(1.08) rotate(90deg);
+            box-shadow: 0 0 16px var(--moody-orange-glow);
+        }
+
+        .btn-close:active {
+            transform: scale(0.95);
+        }
+
+        /* Window Body */
+        .window-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            line-height: 1.6;
+            color: #cccccc;
+            font-size: 0.98rem;
+        }
+
+        .window-highlight {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .audio-status-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(247, 147, 30, 0.08);
+            border: 1px dashed rgba(247, 147, 30, 0.3);
+            border-radius: 10px;
+            color: #f7931e;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .audio-wave {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            height: 16px;
+        }
+
+        .audio-bar {
+            width: 3px;
+            height: 8px;
+            background: var(--moody-orange);
+            border-radius: 2px;
+            transition: height 0.2s ease;
+        }
+
+        .audio-wave.active .audio-bar:nth-child(1) { animation: wave 0.8s infinite ease-in-out; }
+        .audio-wave.active .audio-bar:nth-child(2) { animation: wave 0.8s infinite ease-in-out 0.15s; }
+        .audio-wave.active .audio-bar:nth-child(3) { animation: wave 0.8s infinite ease-in-out 0.3s; }
+        .audio-wave.active .audio-bar:nth-child(4) { animation: wave 0.8s infinite ease-in-out 0.45s; }
+
+        @keyframes wave {
+            0%, 100% { height: 6px; }
+            50% { height: 18px; }
+        }
+
+        /* Action Buttons Toolbar */
+        .window-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 14px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Listen Button */
+        .btn-listen {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .btn-listen svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-listen:hover {
+            background: rgba(247, 147, 30, 0.15);
+            border-color: var(--moody-orange);
+            color: #ffaa00;
+            box-shadow: 0 0 16px rgba(247, 147, 30, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-listen:hover svg {
+            transform: scale(1.15);
+        }
+
+        .btn-listen.playing {
+            background: var(--moody-orange);
+            border-color: #ffaa00;
+            color: #070709;
+            box-shadow: 0 0 20px var(--moody-orange-glow);
+        }
+
+        /* Continue Button */
+        .btn-continue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 26px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #f7931e, #ffaa00);
+            border: none;
+            color: #070709;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(247, 147, 30, 0.35);
+            user-select: none;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(247, 147, 30, 0.55);
+            filter: brightness(1.08);
+        }
+
+        .btn-continue:active {
+            transform: translateY(0);
+        }
+
+        /* Floating Restore / Trigger Button */
+        .btn-reopen {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: var(--moody-card-bg);
+            border: 1px solid var(--moody-orange);
+            color: #ffffff;
+            border-radius: 9999px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--moody-orange-glow);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 99;
+            backdrop-filter: blur(12px);
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-reopen:hover {
+            background: var(--moody-orange);
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 480px) {
+            .dynamic-window {
+                padding: 24px 20px;
+            }
+            .window-actions {
+                justify-content: stretch;
+            }
+            .btn-listen, .btn-continue {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-grid"></div>
+
+    <div class="widget-wrapper">
+        <div class="dynamic-window" id="experimental-window">
+            <!-- Header with Title and [X] Close Button -->
+            <div class="window-header">
+                <div class="window-title-wrap">
+                    <span class="status-dot"></span>
+                    <span class="window-title">Experimental Widget Sandbox</span>
+                </div>
+                <button class="btn-close" id="btn-close-window" title="Close Window" aria-label="Close Window">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Body Content -->
+            <div class="window-body">
+                <p>
+                    <span class="window-highlight">DeepVoid Protocol Sandbox:</span> This page serves as an isolated testing ground for new dynamic spatial components, audio synthesizers, and procedural UI widgets before integration into production pages.
+                </p>
+                <div class="audio-status-banner">
+                    <div class="audio-wave" id="audio-wave">
+                        <span class="audio-bar"></span>
+                        <span class="audio-bar"></span>
+                        <span class="audio-bar"></span>
+                        <span class="audio-bar"></span>
+                    </div>
+                    <span id="audio-status-text">Audio Engine Ready — Click Listen to test sound</span>
+                </div>
+            </div>
+
+            <!-- Actions: Listen & Continue Buttons -->
+            <div class="window-actions">
+                <button class="btn-listen" id="btn-listen" title="Listen to Audio Feedback">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <span>Listen</span>
+                </button>
+                <button class="btn-continue" id="btn-continue" title="Proceed / Continue">
+                    <span>Continue</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Re-open trigger if window is closed -->
+    <button class="btn-reopen" id="btn-reopen" title="Reopen Experimental Window">
+        <span>⚡ Re-open Widget</span>
+    </button>
+
+    <script src="js/metaverse-enhancements.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const win = document.getElementById('experimental-window');
+            const btnClose = document.getElementById('btn-close-window');
+            const btnContinue = document.getElementById('btn-continue');
+            const btnListen = document.getElementById('btn-listen');
+            const btnReopen = document.getElementById('btn-reopen');
+            const wave = document.getElementById('audio-wave');
+            const audioStatus = document.getElementById('audio-status-text');
+
+            // Sound feedback using site's audio assets
+            let clickSound;
+            try {
+                clickSound = new Audio('Audio/m_Click.wav');
+            } catch (e) {}
+
+            function playSound() {
+                if (clickSound) {
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(() => {});
+                }
+            }
+
+            // Close button [X]
+            btnClose.addEventListener('click', () => {
+                playSound();
+                win.classList.add('closed');
+                setTimeout(() => {
+                    btnReopen.style.display = 'inline-flex';
+                }, 300);
+            });
+
+            // Reopen button
+            btnReopen.addEventListener('click', () => {
+                playSound();
+                btnReopen.style.display = 'none';
+                win.classList.remove('closed');
+            });
+
+            // Continue button
+            btnContinue.addEventListener('click', () => {
+                playSound();
+                btnContinue.innerHTML = '<span>Processing...</span>';
+                setTimeout(() => {
+                    btnContinue.innerHTML = '<span>Continued! ✓</span>';
+                    setTimeout(() => {
+                        btnContinue.innerHTML = '<span>Continue</span><span>→</span>';
+                    }, 1500);
+                }, 400);
+            });
+
+            // Listen button with Web Audio synth tone / audio feedback
+            let isPlaying = false;
+            let audioCtx;
+            btnListen.addEventListener('click', () => {
+                playSound();
+                isPlaying = !isPlaying;
+
+                if (isPlaying) {
+                    btnListen.classList.add('playing');
+                    wave.classList.add('active');
+                    btnListen.querySelector('span').textContent = 'Listening...';
+                    audioStatus.textContent = 'Harmonic Frequency Active (432 Hz Synthetic Wave)';
+
+                    try {
+                        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(432, audioCtx.currentTime);
+                        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 2.5);
+
+                        setTimeout(() => {
+                            if (isPlaying) {
+                                isPlaying = false;
+                                btnListen.classList.remove('playing');
+                                wave.classList.remove('active');
+                                btnListen.querySelector('span').textContent = 'Listen';
+                                audioStatus.textContent = 'Audio Tone Completed — Click to replay';
+                            }
+                        }, 2500);
+                    } catch (e) {}
+                } else {
+                    btnListen.classList.remove('playing');
+                    wave.classList.remove('active');
+                    btnListen.querySelector('span').textContent = 'Listen';
+                    audioStatus.textContent = 'Audio Engine Ready — Click Listen to test sound';
+                    if (audioCtx) {
+                        audioCtx.close().catch(() => {});
+                    }
+                }
+            });
+        });
+    </script>
+  <script src="js/moody-ai-agent.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moody Designs - Metaverse Gateway</title>
+    
+    <!-- SEO & Canonical Metadata -->
+    <link rel="canonical" href="https://moodydesigns.net/index.html">
+    <meta name="description" content="Hand-Crafting Ancient, Present, and Future Web-Based Metaverse Virtual Realities.">
+    
+    <style>
+        /* =========================================
+           GLOBAL VARIABLES & RESETS
+           ========================================= */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --primary-orange: #f58220;
+            --text-light: #e0e0e0;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --max-width: 1100px;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* =========================================
+           TYPOGRAPHY & UTILITIES
+           ========================================= */
+        .text-orange { color: var(--primary-orange); }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        
+        .main-wrapper {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: #0a0a0a url('images/Home_BG_Img.jpg') center/cover no-repeat;
+            border-bottom: 1px solid var(--border-color);
+        }
+        #particles-js {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+        }
+        .hero-logo img {
+            max-width: 220px;
+            margin-bottom: 30px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            font-weight: 700;
+            display: block;
+        }
+        .hero-scroll-down {
+            display: inline-block;
+            margin-top: 40px;
+            transition: transform 0.3s ease;
+        }
+        .hero-scroll-down:hover { transform: translateY(5px); }
+        .hero-scroll-down img { width: 35px; border: 1px solid var(--border-color); border-radius: 50%; padding: 5px; }
+
+        /* =========================================
+           SUB-HERO & INTRO
+           ========================================= */
+        .sub-hero {
+            padding: 30px 20px;
+            background-color: #0f0f0f;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sub-hero p { font-size: 1.1rem; }
+        .sub-hero .small-text { font-size: 0.8rem; margin-top: 10px; }
+
+        .what-we-do { padding: 60px 0 40px 0; }
+        .what-we-do h2 { font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 1px; }
+        .what-we-do p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #aaaaaa;
+        }
+
+        /* =========================================
+           THE OPEN METAVERSE BANNER (COMPLEX LAYERING)
+           ========================================= */
+        .open-metaverse-section { margin-top: 60px; }
+        .open-metaverse-section h2 { font-size: 2rem; margin-bottom: 20px; }
+        
+        .om-banner-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background-color: #111;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden; /* Clips the spark god-rays */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Knight aligned left/bottom */
+        .om-knight {
+            position: absolute;
+            left: 5%;
+            bottom: -5%;
+            height: 110%;
+            z-index: 2;
+            object-fit: contain;
+            filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.8));
+        }
+
+        /* Spark god-rays aligned top/right */
+        .om-spark {
+            position: absolute;
+            right: -15%;
+            top: -30%;
+            width: 80%;
+            height: 160%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        /* Centered Pill Button */
+        .om-pill-btn {
+            position: relative;
+            z-index: 3;
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+        }
+        .om-pill-btn:hover {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            transform: scale(1.05);
+        }
+
+        /* =========================================
+           META-CIVILIZATIONS INTRO
+           ========================================= */
+        .meta-civs-intro { padding: 60px 0 20px 0; }
+        .meta-civs-intro h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 15px; }
+        .meta-civs-intro p { font-size: 0.95rem; margin-bottom: 10px; }
+    </style>
+</head>
+<body id="homepage">
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <div class="hero-logo">
+                <a href="index.html">
+                    <img src="images/Moodydesigns-Logo.png" alt="Moody Designs Logo">
+                </a>
+            </div>
+            <h1>YOUR ONE-STOP <br><span class="text-orange">METAVERSE GATEWAY</span></h1>
+            
+            <a href="#what-are-we-building" class="hero-scroll-down" aria-label="Scroll Down">
+                <img src="images/Arrow-Down.png" alt="Scroll Down">
+            </a>
+        </div>
+    </header>
+
+    <!-- SUB HERO -->
+    <section class="sub-hero text-center">
+        <div class="main-wrapper">
+            <p><strong><span class="text-orange">Hand-Crafting</span> Ancient, Present, and Future<br>
+            Web-Based Metaverse <span class="text-orange">Virtual Realities</span>.</strong></p>
+            <p class="text-muted small-text">Accessible from any (PC/Laptop) Web Browser.</p>
+        </div>
+    </section>
+
+    <!-- MASTER WRAPPER FOR ALL CONTENT -->
+    <main class="main-wrapper">
+
+        <!-- WHAT ARE WE DOING -->
+        <section class="what-we-do text-center" id="what-are-we-building">
+            <h2>WHAT ARE WE <span class="text-orange">DOING?</span></h2>
+            <p style="font-size: 0.75rem; letter-spacing: 2px; margin-top: -20px; margin-bottom: 30px; text-transform: uppercase;">Geopolitics, Culture, and Technology</p>
+            
+            <p>Our virtual realities are a product of collective human intelligence,<br>billions of hours detailing the thousands of years of human civilizations.</p>
+            <p>The global network of browser-based computers that we call the Internet is<br>no longer just a "Place" to share information and download resources.</p>
+            <p>It has now evolved to native Immersive Spaces for the Web3. Remember? Always Accessible,<br>with Personalized Avatars, Spatial Presence, and an entirely owned Virtual Environment you<br>can share with the rest of the Open Metaverse, which is simply the next iteration of the internet.</p>
+            
+            <!-- THE OPEN METAVERSE BANNER -->
+            <div class="open-metaverse-section">
+                <h2>THE OPEN <span class="text-orange">METAVERSE</span></h2>
+                
+                <a href="metaverse-portfolio.html" class="om-banner-container">
+                    <!-- Left Aligned Knight -->
+                    <img src="images/the-moody-sword-plants.png" alt="The Moody Knight" class="om-knight">
+                    
+                    <!-- Right Aligned Clipped Spark God-Rays -->
+                    <img src="images/spark-L.png" alt="God Rays Glow" class="om-spark">
+                    
+                    <!-- Centered Button -->
+                    <div class="om-pill-btn">OUR SPACES COLLECTION</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- META-CIVILIZATIONS INTRO -->
+        <section class="meta-civs-intro text-center">
+            <h2>New <span class="text-orange">Meta-Civilizations</span><br>are being born right now...!</h2>
+            <p class="text-muted">Below are the <strong>List of Projects</strong> currently in development</p>
+            <p style="margin-top: 15px; font-weight: bold; letter-spacing: 1px;">OO <span class="text-orange">LET'S DIVE IN</span> OO</p>
+        </section>
+        <!-- =========================================
+             PART 2 CSS (PROJECT CARDS & HERO IMAGES)
+             ========================================= -->
+        <style>
+            .spaces-showcase {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Project Card Styles */
+            .project-card {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                padding: 35px;
+                margin: 40px 0 20px 0;
+                text-align: left;
+                width: 100%;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            .project-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #222;
+                padding-bottom: 15px;
+            }
+            .project-header h3 { font-size: 1.8rem; line-height: 1.1; font-weight: 800; letter-spacing: 1px; }
+            .project-header h3 span.sub-title { font-size: 1rem; color: var(--text-muted); font-weight: 400; display: block; margin-top: 5px; letter-spacing: 0; }
+            .project-flags { display: flex; align-items: center; gap: 12px; }
+            .project-flags img { width: 40px; height: auto; border-radius: 50%; }
+            .project-flags img.rect-flag { border-radius: 4px; width: 45px; }
+            
+            .project-body { display: flex; gap: 30px; align-items: stretch; }
+            .project-info { flex: 1.2; font-size: 0.85rem; color: #ccc; line-height: 1.7; }
+            .project-info p { margin-bottom: 15px; }
+            .project-info strong { color: #fff; }
+            .story-icon { color: var(--primary-orange); font-size: 0.9rem; margin-right: 5px; }
+            
+            .project-image {
+                flex: 0.8;
+                border: 1px solid var(--border-color);
+                border-radius: 10px;
+                overflow: hidden;
+                background: #1a1a1a;
+                display: flex;
+                box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            }
+            .project-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+            .project-image:hover img { transform: scale(1.03); }
+            
+            .project-actions { margin-top: 25px; display: flex; gap: 15px; align-items: center; }
+            .btn-outline {
+                background: transparent;
+                color: var(--text-light);
+                border: 1px solid #555;
+                padding: 12px 30px;
+                border-radius: 30px;
+                font-size: 0.85rem;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+            .btn-outline:hover { border-color: var(--primary-orange); color: var(--primary-orange); }
+            .btn-solid-gray {
+                background: #444;
+                color: #fff;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 30px;
+                font-size: 0.85rem;
+                font-weight: bold;
+                transition: background 0.3s ease;
+            }
+            .btn-solid-gray:hover { background: #666; }
+
+            /* Large Hero Images */
+            .large-hero-image {
+                width: 100%;
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                overflow: hidden;
+                margin: 10px 0 30px 0;
+                display: block;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            }
+            .large-hero-image img {
+                width: 100%;
+                display: block;
+                transition: transform 0.4s ease;
+            }
+            .large-hero-image:hover img { transform: scale(1.02); }
+
+            /* Demo Actions */
+            .demo-actions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                margin: 40px 0 80px 0;
+                width: 100%;
+            }
+            .btn-pill-orange {
+                background: var(--primary-orange);
+                color: #fff;
+                border: none;
+                padding: 15px 60px;
+                border-radius: 40px;
+                font-size: 1.2rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                box-shadow: 0 5px 20px rgba(245, 130, 32, 0.4);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .btn-pill-orange:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245, 130, 32, 0.6); }
+            .btn-pill-dark {
+                background: #111;
+                color: #aaa;
+                border: 1px solid #333;
+                padding: 12px 40px;
+                border-radius: 30px;
+                font-size: 0.9rem;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+            .btn-pill-dark:hover { border-color: var(--primary-orange); color: #fff; }
+        </style>
+
+        <!-- =========================================
+             THE SPACES SHOWCASE (ALTERNATING LAYOUT)
+             ========================================= -->
+        <section class="spaces-showcase">
+            
+            <!-- 1. EGYPT 2222 CARD -->
+            <div class="project-card" id="egypt-2222-a-c">
+                <div class="project-header">
+                    <h3>EGYPT <span class="text-orange">2222 A.C.</span><br><span class="sub-title">THE CITY OF ALEXANDRIA</span></h3>
+                    <div class="project-flags">
+                        <img src="images/icon-project-1.png" alt="Project Icon">
+                        <img src="images/Egypt-Flag-svg.svg" alt="Egypt Flag" class="rect-flag">
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <p><span class="text-orange">Egypt 2222 A.C.</span> is an inspirational example that the limit of spaces are a full release of the <strong>Open Metaverse</strong> in playable web experience running directly on any web browser, and mintable as <strong>NFT</strong> which can be owned and partially customized for each unique buyer even after minting and reselling the space.</p>
+                        <p>The space is planned to establish the concept of <strong>Functional and Reusable Digital Real-estate</strong> which presents true <strong>Digital Value</strong> for each one of its owners as an <strong>ever-reusable NFT</strong> item.</p>
+                        
+                        <hr class="divider-gradient" style="margin: 20px 0;">
+                        
+                        <p>A new concept which shall <strong>elevate and enhance the idea</strong> that most people have about <strong>NFTs, Web3, and Blockchain Technology</strong> in general as it begins to expand and continuously evolve.</p>
+                    </div>
+                    <a href="egypt-2222.html" class="project-image" aria-label="View Egypt 2222 Artifact">
+                        <img src="images/egypt-2222-artifact.jpg" alt="Golden Artifact Alexandria">
+                    </a>
+                </div>
+                <div class="project-actions">
+                    <a href="egypt-2222.html" class="btn-outline">Learn More About Egypt 2222 A.C.</a>
+                    <a href="#egypt-2030-a-c" class="btn-solid-gray">NEXT PROJECT</a>
+                </div>
+            </div>
+
+            <!-- 2. HERO IMAGE: SCI-FI TRACK -->
+            <a href="egypt-2222.html" class="large-hero-image" aria-label="Sci-Fi Metaverse Track">
+                <img src="images/banner-scifi-track.jpg" alt="Sci-Fi Track Structure">
+            </a>
+
+            <!-- 3. EGYPT 2030 CARD -->
+            <div class="project-card" id="egypt-2030-a-c">
+                <div class="project-header">
+                    <h3>EGYPT <span class="text-orange">2030 A.C.</span><br><span class="sub-title">THE CITY OF GIZA - HARAM</span></h3>
+                    <div class="project-flags">
+                        <img src="images/icon-project-2.png" alt="Project Icon">
+                        <img src="images/Egypt-Flag-svg.svg" alt="Egypt Flag" class="rect-flag">
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <p><span class="story-icon">▶</span> <strong class="text-orange">Story:</strong></p>
+                        <p>Continuing the narrative of immersive digital environments, this project aims to replicate the majestic Giza plateau...</p>
+                        <p>Combining historical accuracy with futuristic design, players will be able to explore the Great Pyramids like never before.</p>
+                    </div>
+                    <a href="egypt-2030.html" class="project-image" aria-label="View Egypt 2030 Interior">
+                        <img src="images/egypt-2030-artifact.jpg" alt="Egypt 2030 Interior Representation">
+                    </a>
+                </div>
+                <div class="project-actions">
+                    <a href="egypt-2030.html" class="btn-outline">Learn More About Egypt 2030 A.C.</a>
+                    <a href="#bali-2111-a-c" class="btn-solid-gray">NEXT PROJECT</a>
+                </div>
+            </div>
+
+            <!-- 4. HERO IMAGE: ARCHITECTURAL BRIDGE -->
+            <a href="egypt-2030.html" class="large-hero-image" aria-label="Architectural Metaverse Bridge">
+                <img src="images/banner-architecture.jpg" alt="Architectural Scaffolding Bridge">
+            </a>
+
+            <!-- 5. BALI 2111 CARD -->
+            <div class="project-card" id="bali-2111-a-c">
+                <div class="project-header">
+                    <h3>BALI <span class="text-orange">2111 A.C.</span><br><span class="sub-title">THE BAMBOO ISLAND</span></h3>
+                    <div class="project-flags">
+                        <img src="images/flag-un.png" alt="UN Flag" class="rect-flag">
+                        <img src="images/bali-flag-svg.svg" alt="Indonesia Flag" class="rect-flag">
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-info">
+                        <p>A.C. where <span class="text-orange">100%</span> of the houses and constructions in the city were made entirely from <span class="text-orange">organic</span> and <span class="text-orange">locally grown</span> bamboos.</p>
+                        
+                        <p style="margin-top: 20px;"><span class="story-icon">▶</span> <strong class="text-orange">Story:</strong></p>
+                        <p>The city was first founded by 11 men and their families who survived the devastating floods and tsunami that hit Bali in the year <strong>2049 A.C.</strong> and they began building the city of the abundant bamboos which was the only thing in the city that floated back up to surface right after the disaster.</p>
+                    </div>
+                    <a href="http://bali_demo" target="_blank" rel="noopener" class="project-image" aria-label="View Bali Bamboo Structure">
+                        <img src="images/metaverse-bali-15-L.jpg" alt="Bali Bamboo Structure">
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. HERO IMAGE: BAMBOO ISLAND -->
+            <a href="http://bali_demo" target="_blank" rel="noopener" class="large-hero-image" aria-label="Bali Bamboo Island Wide">
+                <img src="images/metaverse-bali-10-L.jpg" alt="Bali Bamboo Island Wide Shot">
+            </a>
+
+            <!-- 7. HERO IMAGE: SUNSET TRACK (ALTERNATE) -->
+            <a href="metaverse-portfolio.html" class="large-hero-image" aria-label="Sci-Fi Track Sunset">
+                <img src="images/egypt-2222-banner-13-L.jpg" alt="Sci-Fi Track Sunset View">
+            </a>
+
+            <!-- 8. DEMO ACTIONS -->
+            <div class="demo-actions">
+                <a href="http://bali_demo" target="_blank" rel="noopener" class="btn-pill-orange">ENTER DEMO</a>
+                <a href="metaverse-portfolio.html" class="btn-pill-dark">Check More Projects in Development</a>
+            </div>
+
+        </section>
+        <!-- =========================================
+             PART 3 CSS (FEATURES, NEEDS, & SERVICES)
+             ========================================= -->
+        <style>
+            /* Features Section Headers */
+            .features-header {
+                text-align: center;
+                margin: 60px 0 40px 0;
+            }
+            .features-header h2 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            .features-header p {
+                font-size: 0.9rem;
+                color: var(--text-light);
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            /* Feature Grids */
+            .feature-category {
+                margin-bottom: 60px;
+                text-align: center;
+            }
+            .feature-category h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+            .feature-category > p {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                max-width: 850px;
+                margin: 0 auto 30px auto;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                width: 100%;
+            }
+            .feature-card {
+                background: #111;
+                border: 1px solid #333;
+                border-radius: 12px;
+                padding: 40px 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            .feature-card:hover {
+                border-color: var(--primary-orange);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(245, 130, 32, 0.1);
+            }
+            .feature-card img {
+                height: 65px;
+                width: auto;
+                margin-bottom: 25px;
+                filter: drop-shadow(0 0 5px rgba(245, 130, 32, 0.5));
+            }
+            .feature-card h4 {
+                color: var(--primary-orange);
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .feature-card p {
+                font-size: 0.8rem;
+                color: #aaa;
+                line-height: 1.5;
+            }
+
+            /* All Needs Section */
+            .all-needs-section {
+                padding: 60px 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                background: linear-gradient(180deg, transparent, rgba(245, 130, 32, 0.05), transparent);
+            }
+            .needs-header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            .needs-header img { width: 60px; }
+            .needs-header h3 { font-size: 2rem; line-height: 1.2; text-align: left; }
+            .all-needs-section > p {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                max-width: 750px;
+                margin-bottom: 15px;
+            }
+            .lightbulb-box {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-top: 30px;
+            }
+            .lightbulb-box img { width: 45px; }
+            .lightbulb-box h4 { font-size: 1.4rem; text-align: left; margin-bottom: 5px; }
+            .lightbulb-box p { font-size: 0.9rem; color: var(--text-muted); text-align: left; }
+
+            /* Products & Services */
+            .sp-container { padding: 60px 0; width: 100%; }
+            .sp-header {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            .sp-header img { width: 55px; }
+            .sp-header h2 { font-size: 2rem; line-height: 1.1; }
+            
+            .sp-box {
+                border: 1px dashed #555;
+                background: rgba(20, 20, 20, 0.5);
+                padding: 35px;
+                margin-bottom: 20px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                transition: border-color 0.3s ease;
+            }
+            .sp-box:hover { border-color: var(--primary-orange); }
+            .sp-title {
+                width: 200px;
+                font-weight: 900;
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+                color: #fff;
+            }
+            .sp-content {
+                flex: 1;
+                font-size: 0.85rem;
+                color: #ccc;
+                border-left: 1px solid #333;
+                padding-left: 30px;
+            }
+            .sp-content p { margin-bottom: 10px; }
+            .sp-content ul { padding-left: 20px; margin-bottom: 10px; list-style-type: square; }
+            .sp-content ul li { margin-bottom: 8px; }
+            .sp-content .note { text-align: right; font-size: 0.75rem; font-style: italic; color: #888; margin-top: 15px; }
+            
+            .sp-bottom-row {
+                display: flex;
+                gap: 20px;
+                margin-top: 20px;
+                width: 100%;
+            }
+            .more-worlds {
+                border: 1px dashed #555;
+                border-radius: 12px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 180px;
+                color: var(--primary-orange);
+                font-weight: bold;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                background: rgba(20, 20, 20, 0.5);
+            }
+            .more-worlds:hover { border-color: var(--primary-orange); background: rgba(245, 130, 32, 0.1); }
+            .more-worlds img { width: 35px; margin-top: 15px; border: 1px solid var(--primary-orange); border-radius: 50%; padding: 5px; }
+            
+            .contact-cta {
+                flex: 1;
+                border: 1px dashed #555;
+                background: rgba(20, 20, 20, 0.5);
+                padding: 20px 40px;
+                border-radius: 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .contact-cta p { font-size: 0.95rem; color: #ccc; line-height: 1.5; }
+        </style>
+
+        <!-- =========================================
+             FEATURES & USE-CASES SECTION
+             ========================================= -->
+        <section class="features-header" id="spaces-features-use-cases">
+            <h2>Our Spaces <span class="text-orange">Features</span><br>and <span class="text-orange">Metaverse</span> Use-cases</h2>
+            <p>Exploring the future of <strong>Web3, Metaverse, Film3,</strong> and <strong>NFTs</strong> convergence<br>To entertain, connect, and involve everyone in the world to participate</p>
+        </section>
+
+        <!-- GRID 1: BUSINESS & MARKETING -->
+        <section class="feature-category">
+            <h3><span class="text-orange">Metaverse</span> for BUSINESS & MARKETING</h3>
+            <p>Today emerges a <strong>New Platform</strong> for <strong>Online Marketing, E-commerce,</strong> and <strong>Commercial Advertising.</strong> At the same time, with it comes a <strong>New Playground</strong> that provides unprecedented levels of immersive 3D spatial environments that could be utilized for <strong>Showing Products, Offering Services,</strong> and <strong>Growing Brands.</strong></p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="images/icon_efficient_pipelines.png" alt="Shopping Platform">
+                    <h4>SHOPPING PLATFORM</h4>
+                    <p>[Referrals Links -<br>Sponsored Products]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/icon_VAC_resolver.png" alt="Interactive Ads">
+                    <h4>INTERACTIVE ADS</h4>
+                    <p>[Billboards - Road Signage -<br>Sculptures - Salesmen Avatars]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/nvidia_stack_cutout.png" alt="Metaverse NFT Mall">
+                    <h4>METAVERSE NFT MALL</h4>
+                    <p>[Avatars - Spaces - 3D<br>Assets - NFTs]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID 2: ARTS, KNOWLEDGE, CULTURE -->
+        <section class="feature-category">
+            <h3><span class="text-orange">Metaverse</span> for ARTS, for KNOWLEDGE, and for CULTURE</h3>
+            <p>While we were exploring the <strong>infinite potential</strong> of these new <strong>virtual reality internet</strong> experiences we decided to focus our attention directly towards <strong>the heart of every experience...</strong> the "People Community". People of all <strong>ages, genders,</strong> and <strong>interests</strong> shall always find our spaces to be <strong>amusing, safe,</strong> and <strong>beneficial.</strong></p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="images/SDG-4-svg.svg" alt="Education Hub">
+                    <h4>EDUCATION HUB</h4>
+                    <p>[Curated Edu. YT Videos -<br>Game dev - Architecture -<br>Nature & More]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/google_stack_cutout.png" alt="Entertainment Hub">
+                    <h4>ENTERTAINMENT HUB</h4>
+                    <p>[Live Events - Activities -<br>Music Festivals - Parties]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/meta_stack_cutout.png" alt="Art Galleries">
+                    <h4>ART GALLERIES</h4>
+                    <p>[Curators - NFTs - Creators]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID 3: FUN, GAMING, ADVENTURE -->
+        <section class="feature-category">
+            <h3><span class="text-orange">Metaverse</span> for FUN, for GAMING, and for ADVENTURE</h3>
+            <p>Although we were always keen to perceive the <strong>Metaverse</strong> as <strong>not just</strong> another gaming platform... Yet, as <strong class="text-orange">The Moody</strong> always likes to say... <strong>"If it's not FUN, it's not DONE!"</strong> therefore each of our <strong>alpha productions</strong> comes packed with <strong>story-based games, quests,</strong> and <strong>interactivity</strong> beside its <strong>built-in function</strong> and <strong>social uses.</strong></p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="images/icon_6-DPF-Movements.png" alt="Transportations">
+                    <h4>TRANSPORTATIONS</h4>
+                    <p>[Hover-board - Spaceships<br>- Teleportation Portals -<br>Metaverse Traveling]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/icon_Transmedia_Codex.png" alt="Film 3.0 Meta-Theater">
+                    <h4>FILM 3.0 META-THEATER</h4>
+                    <p>[On-Chain Streaming<br>Film3 Cinema House]</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/icon_tactical_arena.png" alt="Game Challenge">
+                    <h4>GAME CHALLENGE</h4>
+                    <p>[Mini games - Obstacles -<br>Mazes - Quests - & More...]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             ALL NEEDS SECTION
+             ========================================= -->
+        <section class="all-needs-section" id="our-core-mission-and-values">
+            <div class="needs-header">
+                <img src="images/icon-cube-needs.png" alt="Cube Icon">
+                <h3><span class="text-orange">Metaverse</span><br>for All Needs<br>and for <span class="text-orange">Every Use-case</span></h3>
+            </div>
+            
+            <p>Let's explore <strong>what's been waiting for you</strong>, and yes we mean specifically <strong>YOU...!</strong></p>
+            <p>Whether you're an <strong>entrepreneur</strong> envisioning a life-changing business, and unlock your project's full potential by leveraging this new cutting-edge technology early on by hiring us to build you your own upcoming Metaverse site.</p>
+            
+            <div class="lightbulb-box">
+                <img src="images/Bulb-svg.svg" alt="Lightbulb Idea Icon">
+                <div>
+                    <h4>Let us know...</h4>
+                    <p>what would <strong>you</strong> use the <strong class="text-orange">Metaverse</strong> for?</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" style="margin: 20px auto 60px auto;">
+
+        <!-- =========================================
+             PRODUCTS & SERVICES SECTION
+             ========================================= -->
+        <section class="sp-container">
+            <div class="sp-header">
+                <img src="images/service-icon-orange-2.svg" alt="Products & Services Icon">
+                <h2>Our <span class="text-orange">Products</span><br>and <span class="text-orange">Services</span></h2>
+            </div>
+
+            <!-- Services Box -->
+            <div class="sp-box">
+                <div class="sp-title">SERVICES</div>
+                <div class="sp-content">
+                    <p><strong class="text-orange">■ B2B AND B2C DIRECT CONTRACTING FOR:</strong></p>
+                    <ul>
+                        <li>Developing Complete Custom <strong>Metaverse Websites</strong> (Solidity Architecture and Deployment).</li>
+                        <li>Providing Detailed <strong>Metaverse Insights</strong> and <strong>Business Consulting.</strong></li>
+                        <li>Building Custom <strong>Personalized</strong> and Private VR Immersive 3D environments.</li>
+                    </ul>
+                    <p class="note">■ Compatible with<br>Meta Quest, Apple Vision Pro, and Mobile Devices<br>and optimized for best smooth performance on all platforms.</p>
+                </div>
+            </div>
+
+            <!-- Products Box -->
+            <div class="sp-box">
+                <div class="sp-title">PRODUCTS</div>
+                <div class="sp-content">
+                    <p><strong class="text-orange">■ SELLING METAVERSE SPACES AS NFT</strong></p>
+                    <ul>
+                        <li>Selling customizable personal spaces on Opensea.io and www.monaverse.com on<br>(Polygon - ETH) for interactive business and entertainment uses which includes:</li>
+                        <li>Major releases of our <strong>alpha projects.</strong></li>
+                        <li>Small Personal Spaces related to each of the major alpha projects themes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom CTA Row -->
+            <div class="sp-bottom-row">
+                <a href="#the-moody" class="more-worlds">
+                    More Worlds
+                    <img src="images/Arrow-Down.png" alt="Scroll Down">
+                </a>
+                <div class="contact-cta">
+                    <p>Contact us directly through any of the channels below and get<br>a quote for your next <strong class="text-orange">Custom Metaverse Space...</strong></p>
+                    <a href="request-offer.html" class="btn-pill-orange" target="_blank" rel="noopener">GET AN OFFER</a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider-gradient" style="margin: 40px auto 60px auto;">
+        <!-- =========================================
+             PART 4 CSS (EPONYMS, TECH, PROFILE, FOOTER)
+             ========================================= -->
+        <style>
+            /* Eponyms Section */
+            .eponym-section {
+                display: flex;
+                align-items: center;
+                padding: 60px 0;
+                width: 100%;
+            }
+            .eponym-text { flex: 1; padding-right: 40px; }
+            .eponym-text h2 { font-size: 3.5rem; margin-bottom: 5px; line-height: 1; font-weight: 900; }
+            .eponym-text p { font-size: 0.9rem; color: #ccc; margin-bottom: 15px; line-height: 1.7; }
+            .eponym-image {
+                flex: 1;
+                text-align: center;
+                position: relative;
+            }
+            .eponym-image img {
+                max-width: 100%;
+                height: auto;
+                position: relative;
+                z-index: 2;
+                filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            }
+            /* The Golden Spark Glow behind The Moody */
+            .eponym-image::before {
+                content: '';
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                width: 120%; height: 120%;
+                background: radial-gradient(circle, rgba(245,130,32,0.4) 0%, transparent 60%);
+                z-index: 1;
+                pointer-events: none;
+            }
+            .eponym-actions { display: flex; gap: 15px; margin-top: 30px; }
+
+            /* Tech Infrastructure (Background Image Fixed) */
+            .tech-infra {
+                /* Background applied directly to the container */
+                background: linear-gradient(rgba(17,17,17,0.85), rgba(17,17,17,0.85)), url('images/tech-bg-gray-L.jpg') center/cover no-repeat;
+                padding: 50px;
+                border-radius: 15px;
+                border: 1px solid #333;
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                margin-bottom: 60px;
+                width: 100%;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            .tech-title { width: 250px; }
+            .tech-title h3 { color: var(--primary-orange); font-size: 1.4rem; margin-bottom: 10px; text-transform: uppercase; }
+            .tech-icons {
+                flex: 1;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                text-align: center;
+            }
+            .tech-icons img { max-width: 50px; height: auto; margin-bottom: 15px; }
+            .tech-icons p { font-size: 0.8rem; color: #ddd; font-weight: bold; }
+
+            /* Goals Section */
+            .goals-section { padding: 40px 0; text-align: center; width: 100%; }
+            .goals-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+            .goals-grid { 
+                margin-top: 40px; 
+                display: block; 
+                border-radius: 15px; 
+                overflow: hidden; 
+                border: 1px solid #333; 
+                width: 100%; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            }
+            .goals-grid img { width: 100%; display: block; }
+
+            /* Profile Section (Mathematically Centered) */
+            .profile-section {
+                background: #111;
+                border: 1px solid #333;
+                border-radius: 15px;
+                padding: 50px 40px;
+                margin: 80px auto;
+                width: 100%;
+                box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            }
+            .profile-top {
+                display: grid;
+                grid-template-columns: 180px 1fr 180px; /* Locks left, center, right columns */
+                align-items: center;
+                gap: 30px;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            .profile-side-box {
+                width: 180px;
+                height: 220px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 2px solid #333;
+                background-color: #000;
+            }
+            .profile-side-box img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            /* Flipped Young Portrait */
+            .flipped-portrait { transform: scaleX(-1); } 
+            
+            .profile-center { text-align: center; width: 100%; }
+            .profile-center h2 { font-size: 2.2rem; letter-spacing: 2px; margin: 10px 0; color: var(--primary-orange); font-weight: 900; }
+            .profile-quote { font-size: 0.85rem; color: #888; font-style: italic; margin-top: 20px; line-height: 1.6; }
+            .profile-flags { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+            .profile-flags img { width: 35px; height: auto; border-radius: 4px; }
+            .profile-desc { font-size: 0.9rem; color: #ccc; text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+            .profile-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 40px;
+                padding-top: 30px;
+                border-top: 1px solid #333;
+                width: 100%;
+            }
+            .profile-titles p { color: #fff; font-weight: bold; font-size: 0.95rem; margin-bottom: 5px; }
+
+            /* Navigation Grid */
+            .nav-section { padding: 40px 0 80px 0; width: 100%; }
+            .nav-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                margin-top: 40px;
+                width: 100%;
+            }
+            .nav-card {
+                background: #151515;
+                border: 1px solid #333;
+                border-radius: 15px;
+                padding: 35px 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-card:hover { border-color: var(--primary-orange); transform: translateY(-5px); }
+            .nav-card img { max-width: 50px; margin-bottom: 15px; }
+            .nav-card h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+            .nav-badge {
+                position: absolute;
+                top: 15px; right: 20px;
+                background: #e63946;
+                color: white;
+                border-radius: 50%;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        </style>
+
+        <!-- =========================================
+             THE MOODY (EPONYMS)
+             ========================================= -->
+        <section class="eponym-section" id="the-moody">
+            <div class="eponym-text">
+                <p style="font-size: 1rem; margin-bottom: 10px;"><strong>Moody Designs</strong> is an</p>
+                <h2>EPONYMS</h2>
+                <p class="text-orange" style="font-weight: bold; margin-bottom: 30px; font-size: 1.2rem;">Something that is named after someone</p>
+                
+                <h3 style="font-size: 2rem; margin-bottom: 20px;">Who is... <span class="text-orange">The Moody</span>...?</h3>
+                
+                <p>"The Moody" as (he) likes to present himself is a "Wizard", "Super-Hero", and self-crowned "King".</p>
+                <p>However, all of King Moody's thrones and kingdoms are made entirely out of fake screen pixel light, in fact...</p>
+                <p>He himself is a fictional character who doesn't exist, (as much as we all wish he did). Yet unfortunately he remains just an <strong>'Avatar'</strong> dwelling in the vast and endless <strong>Open Metaverse</strong>.</p>
+                <p>A mere <strong>'Digital Identity'</strong> that partially projects the dreams of an indigenous <strong class="text-orange">Egyptian Artist</strong> and <strong class="text-orange">First-Generation Gamer</strong>.</p>
+
+                <div class="eponym-actions">
+                    <a href="#a-adel-hosny" class="btn-outline">THE MAN BEHIND THE CURTAIN</a>
+                    <a href="https://x.com/Adel_Paalmee" target="_blank" rel="noopener" class="btn-solid-gray">FOLLOW ON X</a>
+                </div>
+            </div>
+            
+            <div class="eponym-image">
+                <img src="images/the-moody-spear-hand.png" alt="The Moody Avatar Character">
+            </div>
+        </section>
+
+        <!-- =========================================
+             TECHNOLOGY INFRASTRUCTURE
+             ========================================= -->
+        <section class="tech-infra" id="technology-infrastructure">
+            <div class="tech-title">
+                <h3>TECHNOLOGY<br><span style="color: #fff;">Infrastructure</span></h3>
+                <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 20px;">Crafting Metaverses Across the <strong>Digital Cosmos</strong></p>
+                <a href="supported-platforms.html" target="_blank" rel="noopener">
+                    <img src="images/made-with-unity-S.jpg" alt="Made with Unity Engine" style="max-width: 130px; border-radius: 6px;">
+                </a>
+            </div>
+            <div class="tech-icons">
+                <div><img src="images/nvidia_stack_cutout.png" alt="Personalized Avatars"><p>Personalized Avatars (VRM)</p></div>
+                <div><img src="images/google_stack_cutout.png" alt="Live Canvas"><p>Media Stream Live Canvases</p></div>
+                <div><img src="images/meta_stack_cutout.png" alt="External Artifacts"><p>External Artifact Links</p></div>
+                <div><img src="images/unity_stack_cutout.png" alt="Blockchain"><p>Mintable on ETH Blockchain</p></div>
+                <div><img src="images/blender_stack_cutout.png" alt="Portals System"><p>Portals System Worlds Linking</p></div>
+                <div><img src="images/opensource_stack_cutout.png" alt="Gamification"><p>Gamification & Interactivity</p></div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             GOALS SECTION
+             ========================================= -->
+        <section class="goals-section">
+            <h2>How do we intend to <span class="text-orange">Achieve</span> this?</h2>
+            <p style="font-size: 0.95rem; color: #ccc; max-width: 850px; margin: 0 auto; line-height: 1.8;">
+                By creatively crafting immersive worlds, directing physical experiences, and setting goals around magnificently designed virtual spaces.<br><br>
+                Through leveraging the latest cutting-edge technology in 3D computer graphics and continuous advancements in spatial computing devices.<br><br>
+                We shall create a <strong>new immersive platform</strong> that enables us to communicate the <strong>17 goals</strong> of sustainable development in a fun, educational format reaching a wide range of audiences in an interactive, social way.
+            </p>
+
+            <div class="goals-grid">
+                <img src="images/17-goals-grid.jpg" alt="UN 17 Sustainable Development Goals Grid">
+            </div>
+        </section>
+
+        <!-- =========================================
+             PROFILE SECTION
+             ========================================= -->
+        <section class="profile-section" id="a-adel-hosny">
+            <div class="profile-top">
+                <!-- Left: Young Portrait (Flipped Horizontally) -->
+                <div class="profile-side-box">
+                    <img src="images/the-moody-young.png" alt="A. Adel Hosny Young" class="flipped-portrait">
+                </div>
+                
+                <!-- Center: Info -->
+                <div class="profile-center">
+                    <p style="font-size: 0.9rem; color: #aaa; line-height: 1.5;">
+                        Age: 33<br>
+                        Nationality: <strong style="color: #fff;">Egyptian</strong><br>
+                        Craft: <strong style="color: #fff;">Dreamer</strong>
+                    </p>
+
+                    <h2>A. ADEL HOSNY</h2>
+
+                    <p style="font-size: 0.85rem; color: #aaa;">
+                        Artist. Technologist. Architect.<br>
+                        and likes to believe is More...
+                    </p>
+
+                    <p class="profile-quote">
+                        "The picture on the left is me: an 11-year-old Dreamer,<br>
+                        While the one on the right is a 33-year-old Dreamer.<br>
+                        The distance between the two is a 22-year-old Dream."
+                    </p>
+                </div>
+                
+                <!-- Right: Adult Portrait -->
+                <div class="profile-side-box">
+                    <img src="images/the-moody-old.png" alt="A. Adel Hosny Adult">
+                </div>
+            </div>
+            
+            <div class="profile-flags">
+                <img src="images/UN-Flag-svg.svg" alt="United Nations Flag">
+                <img src="images/Egypt-Flag-svg.svg" alt="Egypt Flag">
+                <img src="images/bali-flag-svg.svg" alt="International Flag">
+            </div>
+
+            <div class="profile-desc">
+                <p>An individual self-directed researcher and self-taught expert. Following the basic principles of the <strong>Scientific Research Declaration</strong> authored by the <strong>U.N.</strong></p><br>
+                <p>Motivated by all new cutting-edge technologies in 3D computer graphics and web solutions.</p><br>
+                <p>Specialized in the fields of 'Visual Identity' and 'Visual Branding', perfecting all types of computer graphics processes, creating physically-accurate and realistic cinematic imagery, in addition to creative world-building skills both visually and written.</p><br>
+                <p>Recently shifted the continuous research journey to include studies of 'Historical Megalithic Architecture' and 'Metaverse & VR Development', in the pursuit of recreating various Ancient, Present, and Future Civilizations as online browser-based <strong>Metaverse & VR</strong> adventurous 3D experiences.</p>
+            </div>
+
+            <div class="profile-footer">
+                <div class="profile-titles">
+                    <p>CEO & Founder - Moodydesigns</p>
+                    <p>Self-Funded Researcher</p>
+                    <p>Private Contracting Freelancer</p>
+                </div>
+                <a href="https://www.paypal.me/MoodyStudio" target="_blank" rel="noopener" aria-label="Donate via PayPal">
+                    <img src="images/paypal-icon-svg.svg" alt="Donate with PayPal" style="max-width: 130px; transition: transform 0.3s;">
+                </a>
+            </div>
+        </section>
+
+        <!-- =========================================
+             NAVIGATION GRID
+             ========================================= -->
+        <section class="nav-section text-center" id="know-more-about-moodydesigns">
+            <h3 style="font-size: 1.8rem;">KNOW <span class="text-orange">MORE ABOUT</span> MOODYDESIGNS</h3>
+            <p style="font-size: 0.95rem; color: #aaa; margin-top: 5px;">Moodydesigns Metaverse Studio - by: <strong>The Moody</strong></p>
+            
+            <div class="nav-grid">
+                <a href="index.html" class="nav-card">
+                    <img src="images/home-icon-small-svg.svg" alt="Homepage">
+                    <h4>HOMEPAGE</h4>
+                </a>
+                <a href="metaverse-portfolio.html" class="nav-card">
+                    <span class="nav-badge">11</span>
+                    <img src="images/portfolio-icon-L.png" alt="Portfolio">
+                    <h4>PORTFOLIO</h4>
+                </a>
+                <a href="metaverse-services.html" class="nav-card">
+                    <img src="images/list-pink-svg.svg" alt="Services">
+                    <h4>SERVICES</h4>
+                </a>
+                <a href="investors.html" class="nav-card">
+                    <img src="images/invest-icon-L.png" alt="Investors">
+                    <h4>INVESTORS</h4>
+                </a>
+                <a href="supported-platforms.html" target="_blank" rel="noopener" class="nav-card">
+                    <img src="images/Technology-icon-blue-svg.svg" alt="Technology">
+                    <h4>TECHNOLOGY</h4>
+                </a>
+                <a href="https://youtube.com/@Moodydesigns_Metaverse" target="_blank" rel="noopener" class="nav-card">
+                    <img src="images/yt-icon-L.png" alt="YouTube">
+                    <h4>YOUTUBE</h4>
+                </a>
+            </div>
+        </section>
+
+    </main> <!-- END OF MAIN WRAPPER -->
+
+    <!-- =========================================
+         NEW CUSTOM FOOTER (BASED ON SCREENSHOTS)
+         ========================================= -->
+    <style>
+        .custom-footer {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            /* Yellow/Orange gradient fallback, with the character image aligned to the left */
+            background: linear-gradient(90deg, #ffb74d 0%, #f58220 100%);
+            background-image: url('images/footer-bg-character.jpg'); /* Replace with actual character background image */
+            background-position: left center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+        .footer-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Left Side: Resume Button */
+        .footer-left {
+            display: flex;
+            align-items: flex-end;
+        }
+        .resume-btn-box {
+            background: #000;
+            border: 2px solid var(--primary-orange);
+            border-radius: 12px;
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .resume-btn-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(245, 130, 32, 0.4);
+        }
+        .resume-btn-box img { width: 35px; margin-bottom: 10px; }
+
+        /* Right Side: Stacked Dark Cards */
+        .footer-right {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .footer-card {
+            background: #151515;
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border: 1px dashed #333;
+        }
+        
+        /* Top Card Content */
+        .footer-logo { max-width: 250px; margin-bottom: 30px; }
+        .footer-card h3 { font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 30px; }
+        .contact-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: left;
+        }
+        .contact-label { font-size: 1.5rem; line-height: 1.1; font-weight: 400; border-right: 1px solid #444; padding-right: 20px; }
+        .contact-details p { font-size: 1.1rem; color: #ccc; margin-bottom: 5px; }
+        .contact-details strong { color: #fff; font-size: 1.2rem; }
+        .contact-email { color: var(--primary-orange); font-size: 1.2rem; font-weight: bold; margin-top: 5px; display: block; }
+
+        /* Bottom Card Content */
+        .footer-card h2 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; letter-spacing: 1px; }
+        .footer-card h4 { font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; }
+        .footer-card p { font-size: 1.05rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
+        .footer-card p strong { color: #fff; }
+    </style>
+
+    <footer class="custom-footer" id="contact-us">
+        <div class="footer-container">
+            
+            <!-- Left: Resume Button -->
+            <div class="footer-left">
+                <a href="#" class="resume-btn-box">
+                    <img src="images/resume-icon.png" alt="Resume Icon">
+                    Explore Personal Resume
+                </a>
+            </div>
+
+            <!-- Right: Stacked Cards -->

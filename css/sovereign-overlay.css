@@ -1,0 +1,826 @@
+/* ==========================================================================
+   MOODYDESIGNS SOVEREIGN OVERLAY WIDGET — STYLESHEET
+   Version: 1.0 (Static HTML Overlay, Zero-GC Architecture)
+   Author: Moody & Aura — www.moodydesigns.net
+   ========================================================================== */
+
+#sovereign-root {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+#sovereign-root.is-active {
+  pointer-events: auto;
+}
+
+/* Explicitly enable interactions only for clickable controls */
+.sovereign-btn-listen,
+.sovereign-btn-scroll,
+.player-btn-scroll-read,
+.player-play-btn,
+.player-progress-bar,
+.img-nav,
+.space-nav,
+.sovereign-choice-icon,
+.sovereign-choice-col {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Flanking characters and slideshow images must never intercept pointer events */
+#moody-gate,
+#aura-gate,
+.sovereign-character,
+.slide-img {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* -------------------------------------------------------------
+   1. GATE CONTAINER & BACKDROP
+   ------------------------------------------------------------- */
+#sovereign-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 4, 6, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+  font-family: YAFdJnJKOPE-0, YAEnXArs1iQ-0, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+#sovereign-gate.gate-visible {
+  opacity: 1;
+}
+
+#sovereign-gate.gate-closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   2. GATE MODAL (WHAT DO YOU PREFER?)
+   ------------------------------------------------------------- */
+.sovereign-modal {
+  position: relative;
+  width: 560px;
+  max-width: min(560px, 90vw);
+  min-height: 380px;
+  background: linear-gradient(145deg, rgba(18, 18, 22, 0.96), rgba(8, 8, 12, 0.98));
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 45px rgba(255, 122, 0, 0.35), inset 0 0 25px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 28px 36px;
+  box-sizing: border-box;
+  transform: scale(0.6);
+  opacity: 0;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease;
+  z-index: 10;
+}
+
+#sovereign-gate.gate-animate-in .sovereign-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Modal Title */
+.sovereign-modal-title {
+  margin: 0 0 24px;
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.sovereign-modal-title .accent-you {
+  color: #ff9900;
+  text-shadow: 0 0 18px rgba(255, 153, 0, 0.7);
+  font-weight: 900;
+}
+
+/* Choice Columns Grid */
+.sovereign-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.sovereign-choice-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  margin-top: -10px;
+}
+
+#sovereign-gate.gate-elements-in .sovereign-choice-col {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Choice Icons */
+.sovereign-choice-icon {
+  height: 144px; /* Scaled 1.5x from 96px */
+  width: auto;
+  max-width: 195px; /* Scaled 1.5x from 130px */
+  object-fit: contain;
+  filter: drop-shadow(0 4px 15px rgba(255, 122, 0, 0.4));
+  transition: transform 300ms ease, filter 300ms ease;
+  cursor: pointer;
+  display: block;
+  margin: -20px auto 10px auto; /* Moved up */
+}
+
+.sovereign-btn-listen,
+.sovereign-btn-scroll {
+  margin-top: 5px;
+}
+
+.sovereign-choice-col:hover .sovereign-choice-icon {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 20px rgba(255, 153, 0, 0.75));
+}
+
+/* Gate Buttons */
+.sovereign-btn-listen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  background: rgba(10, 10, 14, 0.95);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  outline: none;
+  transition: all 250ms ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  min-width: 190px;
+}
+
+.sovereign-btn-listen:hover {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.sovereign-btn-listen svg,
+.sovereign-btn-listen span.icon {
+  font-size: 18px;
+  display: inline-flex;
+}
+
+.sovereign-btn-scroll {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ff9900 0%, #f77a00 100%);
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  outline: none;
+  transition: all 250ms ease;
+  box-shadow: 0 4px 18px rgba(255, 122, 0, 0.55);
+  min-width: 190px;
+  text-decoration: none;
+}
+
+.sovereign-btn-scroll:hover {
+  background: linear-gradient(135deg, #ffaa22 0%, #ff8800 100%);
+  box-shadow: 0 0 30px rgba(255, 153, 0, 0.9);
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* -------------------------------------------------------------
+   3. FLANKING CHARACTERS (MOODY & AURA)
+   ------------------------------------------------------------- */
+.sovereign-character {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  transition: transform 700ms cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 500ms ease;
+}
+
+#moody-gate {
+  left: -40px;
+  bottom: 0;
+  height: 540px;
+  width: auto;
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95));
+}
+
+#aura-gate {
+  right: -40px;
+  bottom: 0;
+  height: 540px;
+  width: auto;
+  transform: translateX(120%);
+  opacity: 0;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95));
+}
+
+#sovereign-gate.gate-characters-in #moody-gate,
+#sovereign-gate.gate-characters-in #aura-gate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------
+   4. FULLSCREEN CURVED PLAYER CONTAINER
+   ------------------------------------------------------------- */
+#sovereign-player {
+  position: fixed;
+  inset: 24px;
+  max-width: 1920px;
+  margin: auto;
+  background: #000000;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.98), 0 0 25px rgba(255, 122, 0, 0.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: bottom left;
+  transition: opacity 300ms ease;
+}
+
+#sovereign-player.player-active {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 100000 !important;
+}
+
+#sovereign-player.is-loading::after {
+  content: 'LOADING...';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.8);
+  color: #ff9900;
+  font-family: YAFdJnJKOPE-0, sans-serif;
+  font-size: 24px;
+  z-index: 100;
+}
+
+/* Top Navigation Bar */
+.player-top-bar {
+  height: auto;
+  min-height: 52px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.player-top-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.player-btn-scroll-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 22px;
+  border-radius: 9999px;
+  background: #ff9900;
+  color: #000000;
+  font-family: YAFdJnJKOPE-0, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms ease;
+  box-shadow: 0 2px 14px rgba(255, 153, 0, 0.55);
+}
+
+.player-btn-scroll-read:hover {
+  background: #ffaa22;
+  box-shadow: 0 0 22px rgba(255, 153, 0, 0.9);
+  transform: translateY(-1px);
+}
+
+/* Shuffle Speed & Pause/Resume HUD */
+.player-shuffle-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.shuffle-speed-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shuffle-speed-label {
+  font-size: 11px;
+  color: #c4c4cc;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  user-select: none;
+  font-family: YAEnXArs1iQ-0, sans-serif;
+}
+
+.shuffle-speed-pills {
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.shuffle-speed-pill {
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: #9898a4;
+  cursor: pointer;
+  transition: all 180ms ease;
+  outline: none;
+  font-family: YAFdJnJKOPE-0, sans-serif;
+}
+
+.shuffle-speed-pill:hover {
+  color: #ffffff;
+}
+
+.shuffle-speed-pill.active {
+  background: #ff9900;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(255, 153, 0, 0.85);
+}
+
+.shuffle-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 200ms ease;
+  font-family: YAFdJnJKOPE-0, sans-serif;
+}
+
+.shuffle-toggle-btn:hover {
+  background: rgba(255, 153, 0, 0.2);
+  border-color: #ff9900;
+  color: #ffaa00;
+  box-shadow: 0 0 12px rgba(255, 153, 0, 0.45);
+}
+
+.shuffle-toggle-btn.is-paused {
+  background: rgba(255, 100, 0, 0.16);
+  border-color: rgba(255, 153, 0, 0.7);
+  color: #ffaa55;
+}
+
+.shuffle-toggle-dot {
+  display: inline-block;
+  font-size: 9px;
+  color: #00ff88;
+  line-height: 1;
+}
+
+.shuffle-toggle-btn.is-paused .shuffle-toggle-dot {
+  color: #ffaa00;
+}
+
+/* Slideshow Viewport */
+.player-slideshow {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #020204;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide Image Elements (Pool of 3) */
+.slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000000;
+  opacity: 0;
+  pointer-events: none !important;
+  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.slide-img.active {
+  opacity: 1;
+  pointer-events: none !important;
+}
+
+/* Image Navigation Arrows */
+.img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(14, 14, 18, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 200ms ease;
+  z-index: 25;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.img-nav:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+}
+
+.img-nav.prev {
+  left: 24px;
+}
+
+.img-nav.next {
+  right: 24px;
+}
+
+/* -------------------------------------------------------------
+   5. BOTTOM PLAYER CONTROL BAR
+   ------------------------------------------------------------- */
+.player-bottom-bar {
+  height: 74px;
+  background: #08080a;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  padding: 0 28px 0 195px;
+  position: relative;
+  z-index: 30;
+  gap: 22px;
+  box-sizing: border-box;
+}
+
+/* Moody Avatar Rising into Screenplay Viewport (Sketched Scale) */
+.player-moody-avatar {
+  position: absolute;
+  left: 8px;
+  bottom: 0;
+  height: 390px;
+  width: auto;
+  pointer-events: none;
+  z-index: 25;
+  filter: drop-shadow(0 -8px 25px rgba(0, 0, 0, 0.98));
+}
+
+/* Play/Pause Button (Layered Above Moody Avatar) */
+.player-play-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: #0d0d10;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 40;
+}
+
+.player-play-btn:hover {
+  background: #ff9900;
+  border-color: #ff9900;
+  color: #000000;
+  box-shadow: 0 0 22px rgba(255, 153, 0, 0.8);
+  transform: scale(1.08);
+}
+
+/* Center Scrubber & Info */
+.player-center-track {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.player-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #a0a0a5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-time-display {
+  font-family: Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.player-divider {
+  color: #55555c;
+  font-size: 14px;
+}
+
+.player-title-display {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Scrubber Bar */
+.player-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.player-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f77a00, #ff9900);
+  box-shadow: 0 0 12px rgba(255, 153, 0, 0.85);
+  border-radius: 9999px;
+  transition: width 0.05s linear;
+  will-change: width;
+}
+
+/* Right Section: Space Meta & Prev/Next Buttons */
+.player-right-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.player-space-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player-listening-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #888892;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.player-listening-to {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ff9900;
+  text-shadow: 0 0 12px rgba(255, 153, 0, 0.6);
+  letter-spacing: 0.5px;
+}
+
+.player-space-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.space-nav {
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background: rgba(16, 16, 20, 0.95);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: all 200ms ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.space-nav:hover {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.75);
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------
+   6. RESPONSIVE DESIGN (TABLET & MOBILE)
+   ------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .sovereign-modal {
+    width: 92vw;
+    padding: 24px 20px 28px;
+  }
+
+  .player-bottom-bar {
+    padding-left: 160px;
+    padding-right: 16px;
+    gap: 14px;
+  }
+
+  .player-moody-avatar {
+    height: 180px;
+    left: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  #sovereign-player {
+    inset: 8px;
+    border-radius: 12px;
+  }
+
+  .sovereign-modal {
+    width: 94vw;
+    padding: 20px 16px 24px;
+    min-height: auto;
+  }
+
+  .sovereign-modal-title {
+    font-size: 22px;
+    letter-spacing: 1.5px;
+  }
+
+  .sovereign-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sovereign-choice-col {
+    gap: 14px;
+  }
+
+  .sovereign-choice-icon {
+    height: 64px;
+  }
+
+  .sovereign-btn-listen,
+  .sovereign-btn-scroll {
+    width: 100%;
+    min-width: unset;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .player-bottom-bar {
+    height: auto;
+    padding: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .player-moody-avatar {
+    display: none;
+  }
+
+  .player-right-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .img-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .img-nav.prev { left: 12px; }
+  .img-nav.next { right: 12px; }
+}
+
+/* -------------------------------------------------------------
+   7. UNIFIED PORTFOLIO TYPOGRAPHY SOURCE
+   ------------------------------------------------------------- */
+#sovereign-root,
+#sovereign-gate,
+#sovereign-player {
+  font-family: YAFdJnJKOPE-0, YAEnXArs1iQ-0, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.sovereign-modal-title,
+.sovereign-btn-listen,
+.sovereign-btn-scroll,
+.player-btn-scroll-read,
+.player-title-display,
+.player-listening-to,
+.space-nav,
+.img-nav,
+.shuffle-speed-pill,
+.shuffle-toggle-btn {
+  font-family: YAFdJnJKOPE-0, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.player-time-display,
+.player-listening-label,
+.shuffle-speed-label,
+.player-meta-line {
+  font-family: YAEnXArs1iQ-0, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}

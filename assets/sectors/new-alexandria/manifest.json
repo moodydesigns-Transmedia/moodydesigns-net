@@ -1,0 +1,21 @@
+{
+  "id": "new-alexandria",
+  "displayName": "New Alexandria",
+  "listeningTo": "NEW ALEXANDRIA",
+  "durationHint": "00:05:00",
+  "audioFile": "audio/NEW-ALEXANDRIA.wav",
+  "htmlPage": "egypt-2222.html",
+  "images": [
+    "images/01_new-alexandria.jpg",
+    "images/02_new-alexandria.jpg",
+    "images/03_new-alexandria.jpg",
+    "images/04_new-alexandria.jpg",
+    "images/05_new-alexandria.jpg",
+    "images/06_new-alexandria.jpg",
+    "images/07_new-alexandria.jpg",
+    "images/08_new-alexandria.jpg",
+    "images/09_new-alexandria.jpg",
+    "images/10_new-alexandria.jpg",
+    "images/11_new-alexandria.jpg"
+  ]
+}

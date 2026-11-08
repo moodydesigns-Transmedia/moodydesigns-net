@@ -1,0 +1,8 @@
+{
+  "name": "www.Moodydesigns.net",
+  "description": "Imported from GitHub: The-Moody/Moodydesigns",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

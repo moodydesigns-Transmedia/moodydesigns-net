@@ -1,0 +1,27 @@
+{
+  "id": "abyssal-cathedral",
+  "displayName": "Abyssal Cathedral",
+  "listeningTo": "ABYSSAL CATHEDRAL",
+  "durationHint": "00:05:00",
+  "audioFile": "audio/abyssal-cathedral.wav",
+  "htmlPage": "palace-of-solitude-11111.html",
+  "images": [
+    "images/01_abyssal-cathedral.png",
+    "images/02_abyssal-cathedral.png",
+    "images/03_abyssal-cathedral.png",
+    "images/04_abyssal-cathedral.png",
+    "images/05_abyssal-cathedral.png",
+    "images/06_abyssal-cathedral.png",
+    "images/07_abyssal-cathedral.png",
+    "images/08_abyssal-cathedral.png",
+    "images/09_abyssal-cathedral.png",
+    "images/10_abyssal-cathedral.png",
+    "images/11_abyssal-cathedral.png",
+    "images/12_abyssal-cathedral.png",
+    "images/13_abyssal-cathedral.png",
+    "images/14_abyssal-cathedral.png",
+    "images/15_abyssal-cathedral.jpg",
+    "images/16_abyssal-cathedral.jpg",
+    "images/17_abyssal-cathedral.jpg"
+  ]
+}

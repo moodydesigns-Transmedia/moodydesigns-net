@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.catalogue-active {
+  scroll-snap-type: y proximity;
+}
+
+.document-page-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 1.25rem;
+}

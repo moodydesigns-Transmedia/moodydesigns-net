@@ -1,0 +1,19 @@
+{
+  "id": "cherry-blossom",
+  "displayName": "Cherry Blossom",
+  "listeningTo": "CHERRY BLOSSOM",
+  "durationHint": "00:05:00",
+  "audioFile": "audio/cherry-blossom.wav",
+  "htmlPage": "escape-island.html",
+  "images": [
+    "images/01_cherry-blossom.png",
+    "images/02_cherry-blossom.png",
+    "images/03_cherry-blossom.png",
+    "images/04_cherry-blossom.png",
+    "images/05_cherry-blosso.jpg",
+    "images/06_cherry-blossom.jpg",
+    "images/07_cherry-blossom.jpg",
+    "images/08_cherry-blossom.png",
+    "images/09_cherry-blossom.png"
+  ]
+}

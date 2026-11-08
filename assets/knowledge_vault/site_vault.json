@@ -1,0 +1,79 @@
+{
+  "site_title": "Moody Designs — DeepVoid Saga Cyber-Sanctuary Ecosystem",
+  "founder": {
+    "name": "Moody (A. Adel Hosny)",
+    "role": "Founder, Lead 3D Architect, Spatial Computing Developer",
+    "bio": "Moody (A. Adel Hosny) is the visionary founder and lead 3D architect behind Moody Designs and the DeepVoid Saga. He specializes in real-time WebGPU shaders, high-fidelity spatial architecture, sub-millisecond audio visualizers, and cross-platform metaverse environments.",
+    "links": {
+      "portfolio": "metaverse-portfolio.html",
+      "services": "metaverse-services.html",
+      "about": "The_Moody.html"
+    }
+  },
+  "sectors": [
+    {
+      "id": "new-alexandria",
+      "name": "New Alexandria Citadel",
+      "page": "egypt-2222.html",
+      "theme": "Post-Cataclysm Cyber Sanctuary (Egypt 2222)",
+      "description": "A testament to human ingenuity and mathematical grace set in Egypt 2222. Where once the noise of the world roared in defiance, lush volumetric emerald light canopies dance with the wind. Features ancient obelisks fused with cybernetic power grids and sovereign sanctuary architecture.",
+      "audio": "Audio/NEW-ALEXANDRIA.wav"
+    },
+    {
+      "id": "giza 2030",
+      "name": "Giza 2030",
+      "page": "egypt-2030.html",
+      "theme": "Abundance Engine & Sovereign Financial Node",
+      "description": "A futuristic vision of the Giza Plateau in 2030 featuring high-density solar energy collection pyramids, sovereign wealth data vaults, and advanced energy distribution grids.",
+      "audio": "Audio/giza 2030.wav"
+    },
+    {
+      "id": "abyssal-cathedral",
+      "name": "Abyssal Cathedral",
+      "page": "palace-of-solitude-11111.html",
+      "theme": "Hadal Stage & Deep Sea Solitude Refuge",
+      "description": "Submerged beneath the ocean waves in total tranquility. A cathedral of dark waters, bioluminescent aquatic architecture, and peaceful spatial meditation.",
+      "audio": "Audio/abyssal-cathedral.wav"
+    },
+    {
+      "id": "cherry-blossom",
+      "name": "Cherry Blossom Sanctuary",
+      "page": "escape-island.html",
+      "theme": "Encrypted Island Refuge",
+      "description": "An isolated island sanctuary surrounded by floating sakura petals, pink volumetric lighting, serene cyber-waterfalls, and privacy-first spatial nodes.",
+      "audio": "Audio/cherry-blossom.wav"
+    },
+    {
+      "id": "bali-2111",
+      "name": "The Bamboo Sanctuaries (Bali 2111)",
+      "page": "bali-2111.html",
+      "theme": "World Sector A — Volumetric Organic Tech",
+      "description": "Located in Sector A, Bali 2111 is a spatial refuge woven from hope and geometric precision. Canopies dance with volumetric emerald light and noise embrace of the mirror sea.",
+      "audio": "Audio/bali-2111.wav"
+    }
+  ],
+  "services": [
+    {
+      "title": "Meta-Commerce & Virtual Storefronts",
+      "description": "High-conversion 3D virtual shops, interactive product showcases, and seamless WebGPU/WebGL checkout experiences."
+    },
+    {
+      "title": "Architectural 3D Asset Porting & Optimization",
+      "description": "Porting complex CAD and BIM models into real-time WebGL, Unity, and WebGPU with draw-call reduction and LOD optimization."
+    },
+    {
+      "title": "Custom Spatial Web Applets & AI Agents",
+      "description": "Interactive Web applets featuring embedded voice AI agents, spatial audio loops, and zero-allocation animation frameworks."
+    },
+    {
+      "title": "Distribution & Porting Engine",
+      "description": "Cross-platform deployment support for Web browser, Unity DOTS, Meta Quest, Apple Vision Pro, and standalone executable engines."
+    }
+  ],
+  "lore_and_upcoming": [
+    "Cyber Kings 2055 (Sector 11 Arena)",
+    "Cleopatra's Tomb 55 (Volumetric History Archive)",
+    "Egypt Genesis 11111 (Vantablack Vault)",
+    "Mother Fish Submarine (Hadal Flagship Vessel)"
+  ]
+}
